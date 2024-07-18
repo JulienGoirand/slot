@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap');
+
+@font-face {
+    font-family: 'Viking Elder Runes';
+    src: url('fonts/VikingElderRunes.ttf') format('truetype');
+}
+
+body {
+    font-family: 'GFS Didot', serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Align center */
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* In front of the background */
+    text-align: center;
+    background: url('wall.png') no-repeat center center; /* Wall image as background */
+    background-size: cover;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #1E90FF; /* Poséidon blue border */
+    overflow: hidden;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 160px); /* Increase width slightly */
+    grid-template-rows: repeat(4, 150px); /* Keep height the same */
+    column-gap: 30px; /* Increased gap between horizontal columns */
+    row-gap: 1px; /* No gap between vertical rows */
+    margin: 22px auto;
+    transition: transform 0.2s;
+}
+
+.cell {
+    width: 150px; /* Adjust width to match grid-template-columns */
+    height: 150px; /* Keep height the same */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s;
+    border-radius: 10px; /* Rounded corners for a modern look */
+    overflow: hidden;
+}
+
+.cell img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cell .multiplier {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(255, 255, 0, 0.8);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    font-family: 'GFS Didot', serif;
+}
+
+.cell.spinning {
+    animation: spin 0.5s linear infinite;
+}
+
+.cell.stopped {
+    animation: stopSpin 0.5s forwards;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes stopSpin {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+.highlight {
+    border: 2px solid yellow;
+    animation: jump 0.5s;
+}
+
+@keyframes jump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.explode {
+    animation: explode 0.5s forwards;
+}
+
+@keyframes explode {
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.fall {
+    animation: fall 0.5s forwards;
+}
+
+@keyframes fall {
+    from {
+        translateY: -200px;
+        opacity: 0;
+    }
+    to {
+        translateY(0);
+        opacity: 1;
+    }
+}
+
+.splash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('splash.png') no-repeat center center;
+    background-size: contain;
+    z-index: 1; /* Make sure splash is above other elements */
+}
+
+.bottom-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-top: 10px;
+}
+
+.capsule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* Adjust width as needed */
+    background-color: #1E90FF; /* Poséidon blue background */
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px; /* Space between capsule and bottom of the screen */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.balance, .last-gain, .spin-button, .bet-adjustment span {
+    font-size: 24px;
+    color: white;
+    font-family: 'GFS Didot', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #000;
+}
+
+.bet-adjustment {
+    display: flex;
+    align-items: center;
+}
+
+.bet-adjustment button {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    background-color: #00BFFF;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.spin-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #00BFFF;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    font-family: 'GFS Didot', serif;
+}
+
+.win-animation {
+    animation: win 1s ease-in-out;
+}
+
+@keyframes win {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+.gain-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-family: 'GFS Didot', serif;
+    color: red;
+    display: none;
+    animation: shake 0.5s infinite;
+    z-index: 1; /* Behind the container */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #000;
+}
+
+@keyframes shake {
+    0% { transform: translate(-50%, -50%) translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-50%, -50%) translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-50%, -50%) translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(-50%, -50%) translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(-50%, -50%) translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-50%, -50%) translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-50%, -50%) translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(-50%, -50%) translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-50%, -50%) translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(-50%, -50%) translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) translate(1px, -2px) rotate(-1deg); }
+}
+
+.shockwave {
+    animation: shockwave 3s infinite;
+}
+
+@keyframes shockwave {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.statue {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    width: 500px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1; /* Behind the container */
+}
+
+.multiplier-display {
+    position: absolute;
+    top: 45px;
+    right: 75px;
+    background-color: black;
+    color: red;
+    font-size: 48px;
+    font-family: 'GFS Didot', serif;
+    padding: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px #000;
+    z-index: 3; /* In front of the background */
+}
+
+.multiplier-animation {
+    position: absolute;
+    font-size: 240px;
+    color: red;
+    animation: moveToMultiplier 2s forwards;
+    font-family: 'GFS Didot', serif;
+    z-index: 3;
+}
+
+@keyframes moveToMultiplier {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-300px) translateX(400px); /* Adjust these values based on actual positions */
+    }
+}
+
+/* Animation de Victoire Éclatante */
+@keyframes coinsUp {
+    from {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-2000%);
+        opacity: 1;
+    }
+}
+
+.coins {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Larger coins */
+    height: 100px;
+    background: url('coin.png') no-repeat center center;
+    background-size: contain;
+    animation: coinsUp 5s linear infinite;
+}
+
+@keyframes jackpotBanner {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.jackpot-banner {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    color: gold;
+    font-family: 'Viking Elder Runes', serif;
+    text-shadow: 2px 2px #000;
+    animation: jackpotBanner 1s ease-in-out forwards;
+    display: none;
+}
+
+/* Animation de Multiplicateur */
+@keyframes multiplierAura {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+}
+
+.multiplier-aura {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 215, 0, 0.5);
+    border-radius: 50%;
+    animation: multiplierAura 1s ease-in-out infinite;
+    display: none;
+}
+
+/* Animation de Message de Trésor */
+@keyframes showMessage {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.treasure-message {
+    position: fixed; /* Fixed position to stay at the center of the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: gold;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 9999; /* High z-index to appear above all other elements */
+    display: none;
+    animation: showMessage 1s ease-in-out forwards;
+}

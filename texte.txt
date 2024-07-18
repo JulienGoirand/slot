@@ -1,0 +1,21 @@
+const baseSymbolValues = {
+    "Trident.png": 120,      // Low value
+    "statue.png": 160,       // Low value
+    "Tresort.png": 30,      // Medium value
+    "roue.png": 80,         // Medium value
+    "poseidon.png": 1000,   // High value (with multiplier)
+    "nymphe.png": 50,       // Medium value
+    "dauphin.png": 60,      // High value
+    "couronne.png": 210,     // High value
+    "coquillage.png": 80,   // High value
+    "chariot.png": 220       // High value
+
+
+.statue {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    width: 500px; /* Adjust size as needed */
+    height: auto;
+    z-index: 1; /* Behind the container */
+}

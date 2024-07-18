@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine à sous 4x4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <img src="zeridon.png" alt="Statue" class="statue">
+        <div class="gain-animation" id="gainAnimation"></div>
+        <div class="multiplier-display" id="multiplierDisplay">X0</div> <!-- New multiplier display -->
+        <div class="container">
+            <div class="grid">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+            </div>
+            <div class="bottom-panel">
+                <div class="capsule">
+                    <div class="balance">Balance: <span id="balance">10000</span></div>
+                    <div class="last-gain">Last Gain: <span id="lastGain">0</span></div>
+                    <div class="bet-adjustment">
+                        <button id="decreaseBet">-</button>
+                        <span id="bet">100</span>
+                        <button id="increaseBet">+</button>
+                    </div>
+                    <button id="spinButton" class="spin-button">Spin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+<button onclick="window.location.href='bonus.html'" class="bonus-button">Play Bonus Game</button>
+
